@@ -1,7 +1,7 @@
 # Free-WordPress-Glossary-Plugin
 This is a free WordPress Glossary Plugin from Nuvorix.com
 
-# Information *:
+# Information:
 
 A custom glossary plugin for WordPress, offering tooltip functionality, an archive page, and more.
 
