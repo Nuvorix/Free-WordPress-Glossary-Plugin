@@ -1,72 +1,57 @@
-# Free-WordPress-Glossary-Plugin
-This is a free WordPress Glossary Plugin from Nuvorix.com
-
-# Information:
-
+# Information
 A custom glossary plugin for WordPress, offering tooltip functionality, an archive page, caching, and more.
 
-## Please note
-If you plan to create a lot of glossaries or expect significant traffic, we recommend using a caching plugin to enhance performance alongside with the caching in this script.
-E.g. LiteSpeed Cache
+## Important Note
+If you plan to create a large number of glossary entries or expect significant traffic, we recommend using a caching plugin alongside this script’s built-in caching for enhanced performance, e.g., LiteSpeed Cache.
 
 ## Features
 
-- **Custom Glossary Archive Page**:  
-  A dedicated page with search functionality, abbreviation full form, and alphabetical filtering, making it easy for users to find glossary terms.
-  This also has pageination and shows maximum 25 glossaries. When there are more than 25 glossaries - you can view more by going to the next or previous page.
+### Custom Glossary Archive Page
+A dedicated page with search functionality, abbreviation support, and alphabetical filtering, making it easy for users to find glossary terms. This page also includes pagination, displaying up to 25 glossaries per page. Users can navigate through additional pages if there are more than 25 terms.
 
-- **Tooltips with Abbreviation Support**:
-  centered tooltip box that displays the 300-character text from the "Add New Glossary" editor. The background dims, and you can exit the tooltip by:
-  1. Pressing the "X"
-  2. Clicking on the background
-  3. Pressing "Escape" on your keyboard.
+### Tooltips with Abbreviation Support
+A centered tooltip box displays up to 300 characters of text from the "Add New Glossary" editor. The tooltip background dims, and you can close it by:
+- Pressing the "X"
+- Clicking on the background
+- Pressing "Escape" on the keyboard
 
-- **Caching**
-- Implemented on-demand caching for glossary terms when viewed for the first time.
-- Glossary Cache Log displays the newest entries at the top.
-- Glossary Cache and Glossary Cache Log pages have buttons at the top.
-- Optimized caching to use WordPress's native caching more effectively.
-- Reduced redundant caching actions.
-- Caching occurs only if a glossary term appears on a page and isn't already cached.
-- Glossary Cache Log shows a maximum of 1000 entries. The oldest entries will be removed automatically when new ones are added beyond this limit. This shows when cache are generated for terms
-- Glossaries are cached 1 week (168 hours), then it resets cache and rebuilds when visiting pages that includes glossaries
+### Caching
+- **On-demand Caching**: Glossary terms are cached the first time they are viewed.
+- **Glossary Cache Log**: Displays the newest entries at the top, limited to 1000 entries (older entries are automatically removed).
+- **Optimized Caching**: Uses WordPress’s native caching and minimizes redundant actions. Caching occurs only if a glossary term appears on a page and is not already cached.
+- **Automatic Cache Reset**: Cached terms are stored for 1 week (168 hours) and automatically rebuild when users visit pages containing glossary terms.
 
-- **Responsive Design**:  
-  Works well on both desktop and mobile devices, ensuring accessibility for all users.
+### Responsive Design
+Works well on both desktop and mobile devices, ensuring accessibility for all users.
 
-- **
+---
 
 ## Security Features
 
-- **Input Sanitization**:  
-  All user inputs, such as search queries and term entries, are sanitized to prevent malicious code injections.
+### Input Sanitization
+All user inputs, such as search queries and glossary entries, are sanitized to prevent code injection.
 
-- **Data Validation**:  
-  Ensures that only valid data is stored in the database for tooltip text and glossary terms.
+### Data Validation
+Only valid data is stored for tooltip text and glossary terms, ensuring database integrity.
 
-- **Nonce Verification**:  
-  Uses nonce verification to secure form submissions, ensuring that requests are intentional and prevent CSRF attacks.
+### Nonce Verification
+Form submissions use nonce verification to prevent CSRF attacks.
 
-- **Escaping Output to Prevent XSS**:
-  Tooltip text and other glossary data are escaped before being displayed in the browser, preventing XSS attacks.
+### XSS Protection
+Tooltip text and glossary data are escaped before being displayed in the browser to prevent XSS attacks.
 
-- **Glossary Management**:
-  Administrators and Editors are allowed to create, edit, or delete glossary terms, ensuring secure control over glossary entries.
+### Glossary Management
+Administrators and Editors can securely create, edit, or delete glossary terms.
+
+---
 
 ## How Glossary Terms are Stored and Retrieved
 
 ### Storage in Database
-
-- Glossary terms are stored as custom post types in the WordPress `wp_posts` table. Each term is saved with a `post_type` of `glossary` to distinguish them from other post types like `post` (blog posts) or `page`.
-- Additional information such as the tooltip text and abbreviation full form is stored as post metadata in the `wp_postmeta` table, linked to each glossary term using its `post_id`.
-  
-Examples of metadata storage:
-- Tooltip text is stored with the meta_key `_tooltip_text`.
-- Abbreviation full form is stored with the meta_key `_abbreviation_full_form`.
+Glossary terms are stored as custom post types (`glossary`) in the `wp_posts` table, with tooltip text and abbreviation stored in the `wp_postmeta` table using meta keys `_tooltip_text` and `_abbreviation_full_form`.
 
 ### Retrieval of Glossary Terms
-
-Glossary terms are fetched using a `WP_Query` that targets posts with a `post_type` of `glossary`.
+Glossary terms are fetched using a `WP_Query` that targets `post_type` set to `glossary`.
 
 Example:
 ```php
@@ -76,6 +61,7 @@ $glossary_terms = new WP_Query(array(
     'orderby' => 'title',
     'order' => 'ASC',
 ));
+
 ```
 
 Tooltip text and abbreviation full form are retrieved using `get_post_meta()`:
@@ -86,8 +72,8 @@ $abbreviation_full_form = get_post_meta($term->ID, '_abbreviation_full_form', tr
 ```
 
 ## Changelog (latest 11.07.24) (MM/DD/YY)
-- Reworked tooltip text - Now it doesn't show when you hover, press the glossary and a box will open with text
-- Cache implementation
+- Reworked tooltip text - tooltip now appears in a centered box when clicked, no longer on hover.
+- Cache implementation added.
 
 ## Installation
 
@@ -106,17 +92,17 @@ $abbreviation_full_form = get_post_meta($term->ID, '_abbreviation_full_form', tr
   Use the `[glossary_archive]` shortcode to display the glossary archive page on any page.
 
 - **Shortcode to exclude terms**:
-  Use the `[gloss_ign]Glossary[/gloss_ign]` shortcode to exclude glossary tooltips on pages or posts.
+  Use `[gloss_ign]Glossary[/gloss_ign]` o exclude specific glossary tooltips on pages or posts.
 
 - **Adding Glossary Terms**:  
-  Add terms in the WordPress dashboard under **Glossary**. Include descriptions and abbreviations as needed.
+  Add terms in the WordPress dashboard under "Glossary", including descriptions and abbreviations as needed.
 
 - **Automatic Tooltips**:  
-  Tooltips will automatically appear for glossary terms in posts if the term matches the set criteria (e.g., case sensitive).
+  Tooltips automatically appear in posts for matching glossary terms (case sensitive).
 
 ## Known Bugs or Errors
 
-- None, as of right now.
+- None, as as of this version.
 
 ## How and Why This Plugin Was Created
 
