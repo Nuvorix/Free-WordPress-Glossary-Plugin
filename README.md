@@ -3,22 +3,38 @@ This is a free WordPress Glossary Plugin from Nuvorix.com
 
 # Information:
 
-A custom glossary plugin for WordPress, offering tooltip functionality, an archive page, and more.
+A custom glossary plugin for WordPress, offering tooltip functionality, an archive page, caching, and more.
 
 ## Please note
-If you plan to create multiple glossaries or expect significant traffic, we recommend using a caching plugin to enhance performance.
+If you plan to create a lot of glossaries or expect significant traffic, we recommend using a caching plugin to enhance performance alongside with the caching in this script.
 E.g. LiteSpeed Cache
 
 ## Features
 
 - **Custom Glossary Archive Page**:  
-  A dedicated page with search functionality and alphabetical filtering, making it easy for users to find glossary terms.
+  A dedicated page with search functionality, abbreviation full form, and alphabetical filtering, making it easy for users to find glossary terms.
+  This also has pageination and shows maximum 25 glossaries. When there are more than 25 glossaries - you can view more by going to the next or previous page.
 
-- **Tooltips with Abbreviation Support**:  
-  Displays brief descriptions in tooltips when hovering over terms in posts or pages, with the option to show full-form abbreviations in parentheses in archive page.
+- **Tooltips with Abbreviation Support**:
+  centered tooltip box that displays the 300-character text from the "Add New Glossary" editor. The background dims, and you can exit the tooltip by:
+  1. Pressing the "X"
+  2. Clicking on the background
+  3. Pressing "Escape" on your keyboard.
+
+- **Caching**
+- Implemented on-demand caching for glossary terms when viewed for the first time.
+- Glossary Cache Log displays the newest entries at the top.
+- Glossary Cache and Glossary Cache Log pages have buttons at the top.
+- Optimized caching to use WordPress's native caching more effectively.
+- Reduced redundant caching actions.
+- Caching occurs only if a glossary term appears on a page and isn't already cached.
+- Glossary Cache Log shows a maximum of 1000 entries. The oldest entries will be removed automatically when new ones are added beyond this limit. This shows when cache are generated for terms
+- Glossaries are cached 1 week (168 hours), then it resets cache and rebuilds when visiting pages that includes glossaries
 
 - **Responsive Design**:  
   Works well on both desktop and mobile devices, ensuring accessibility for all users.
+
+- **
 
 ## Security Features
 
@@ -69,8 +85,9 @@ $tooltip_text = get_post_meta($term->ID, '_tooltip_text', true);
 $abbreviation_full_form = get_post_meta($term->ID, '_abbreviation_full_form', true);
 ```
 
-## Changelog (latest 10.17.24)
-* Separated CSS from PHP scripts.
+## Changelog (latest 11.07.24) (MM/DD/YY)
+- Reworked tooltip text - Now it doesn't show when you hover, press the glossary and a box will open with text
+- Cache implementation
 
 ## Installation
 
@@ -88,21 +105,23 @@ $abbreviation_full_form = get_post_meta($term->ID, '_abbreviation_full_form', tr
 - **Shortcode for Archive**:  
   Use the `[glossary_archive]` shortcode to display the glossary archive page on any page.
 
+- **Shortcode to exclude terms**:
+  Use the `[gloss_ign]Glossary[/gloss_ign]` shortcode to exclude glossary tooltips on pages or posts.
+
 - **Adding Glossary Terms**:  
   Add terms in the WordPress dashboard under **Glossary**. Include descriptions and abbreviations as needed.
 
 - **Automatic Tooltips**:  
-  Tooltips will automatically appear for glossary terms in posts if the term matches the set criteria (e.g., capital letters).
+  Tooltips will automatically appear for glossary terms in posts if the term matches the set criteria (e.g., case sensitive).
 
 ## Known Bugs or Errors
 
-- **Tooltip Overflow**:  
-  If the tooltip word is positioned too far to the right, it may become a long vertical text box instead of displaying correctly.
+- None, as of right now.
 
 ## How and Why This Plugin Was Created
 
 Please check out this article on our blog to see how and why I decided to make my own plugin:  
-[https://www.nuvorix.com/2024/10/09/free-wordpress-glossary-plugin-chatgpt4/](https://www.nuvorix.com/2024/10/09/free-wordpress-glossary-plugin-chatgpt4/)
+[https://www.nuvorix.com/2024/10/18/free-wordpress-glossary-plugin-chatgpt4/](https://www.nuvorix.com/2024/10/18/free-wordpress-glossary-plugin-chatgpt4/)
 
 ## License
 
