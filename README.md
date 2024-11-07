@@ -11,7 +11,7 @@ A dedicated page with search functionality, abbreviation support, and alphabetic
 
 ### Tooltips with Abbreviation Support
 A centered tooltip box displays up to 300 characters of text from the "Add New Glossary" editor. The tooltip background dims, and you can close it by:
-- Pressing the "X"
+- Clicking the "X"
 - Clicking on the background
 - Pressing "Escape" on the keyboard
 
@@ -45,13 +45,13 @@ The plugin uses role-based access control to limit glossary management capabilit
 
 ### Secure Caching and Logging
 Glossary terms are cached securely using WordPress’s built-in caching mechanisms, with no sensitive information stored in the cache. Caching only occurs when necessary, and redundant caching is avoided to optimize performance. Additionally:
-   - **Technical Event Logging**: The plugin logs only technical events related to cache generation and clearing. User interactions and personal data are not logged.
+   - **Technical Event Logging**: The plugin only logs technical events like cache generation and clearing actions.
    - **Log Limitations**: The cache log is limited to a maximum of 1000 entries. Older entries are automatically removed when this limit is exceeded, ensuring that logs remain manageable and do not impact performance.
 
 ### Secure Glossary Archive Page
 The glossary archive page is built with WordPress’s native query functions, such as `WP_Query`, which provide a secure and optimized way to retrieve and display data from the database. This approach ensures that:
-   - **Data Handling**: Glossary terms are fetched and displayed using WordPress’s built-in functions, which automatically handle data escaping and validation, reducing the risk of vulnerabilities.
-   - **Pagination Security**: The archive page uses WordPress’s pagination controls, which sanitize page numbers and other parameters to prevent injection attacks.
+   - **Data Handling**: Glossary terms are securely fetched and displayed using WordPress’s built-in functions, which handle data escaping and validation automatically, reducing potential vulnerabilities.
+   - **Pagination Security**: The archive page uses WordPress’s pagination controls, which sanitize page numbers, URL parameters, and other input to prevent injection attacks.
    - **Consistent Security Practices**: By relying on WordPress’s core functions, the plugin aligns with established WordPress security standards, ensuring compatibility and security across different environments.
 
 By combining these security measures, the plugin is designed to be robust, secure, and reliable, protecting both site administrators and users from common security threats.
@@ -106,7 +106,7 @@ $abbreviation_full_form = get_post_meta($term->ID, '_abbreviation_full_form', tr
   Use the `[glossary_archive]` shortcode to display the glossary archive page on any page.
 
 - **Shortcode to exclude terms**:
-  Use `[gloss_ign]Glossary[/gloss_ign]` o exclude specific glossary tooltips on pages or posts.
+  Use `[gloss_ign]Glossary[/gloss_ign]` to exclude specific glossary tooltips on pages or posts.
 
 - **Adding Glossary Terms**:  
   Add terms in the WordPress dashboard under "Glossary", including descriptions and abbreviations as needed.
@@ -116,11 +116,11 @@ $abbreviation_full_form = get_post_meta($term->ID, '_abbreviation_full_form', tr
 
 ## Known Bugs or Errors
 
-- None, as as of this version.
+- None as as of this version.
 
 ## How and Why This Plugin Was Created
 
-Please check out this article on our blog to see how and why I decided to make my own plugin:  
+Check out this article on our blog to learn more about the creation process and purpose behind this plugin:
 [https://www.nuvorix.com/2024/10/18/free-wordpress-glossary-plugin-chatgpt4/](https://www.nuvorix.com/2024/10/18/free-wordpress-glossary-plugin-chatgpt4/)
 
 ## License
