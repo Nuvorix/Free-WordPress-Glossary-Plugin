@@ -13,6 +13,9 @@ function glossary_archive_shortcode() {
     try {
         ob_start();
 
+        // Add unique wrapper for styling
+        echo '<div class="glossary-archive-wrapper">';
+
         // Alphabet letters for navigation, including "All"
         $alphabet = array_merge(array('All'), range('A', 'Z'));
         $current_letter = isset($_GET['letter']) ? strtoupper(sanitize_text_field($_GET['letter'])) : '';
@@ -55,7 +58,7 @@ function glossary_archive_shortcode() {
             while ($glossary_terms->have_posts()) {
                 $glossary_terms->the_post();
                 $abbreviation_full_form = get_post_meta(get_the_ID(), '_abbreviation_full_form', true);
-                echo '<li><a href="' . esc_url(get_permalink()) . '"><strong class="glossary-term-title">' . esc_html(get_the_title()) . '</strong>';
+                echo '<li><a href="' . esc_url(get_permalink()) . '" class="glossary-link"><strong class="glossary-term-title">' . esc_html(get_the_title()) . '</strong>';
                 if (!empty($abbreviation_full_form)) {
                     echo ' <span class="glossary-term-abbreviation">(' . esc_html($abbreviation_full_form) . ')</span>';
                 }
@@ -64,17 +67,22 @@ function glossary_archive_shortcode() {
             echo '</ul>';
 
             // Display pagination links
+            echo '<div class="pagination">';
             echo paginate_links(array(
                 'total' => $glossary_terms->max_num_pages,
                 'current' => $paged,
+                'prev_text' => '«', // Left arrow for Previous
+                'next_text' => '»', // Right arrow for Next
+                'type' => 'list'
             ));
+            echo '</div>';
 
             // Display a message if there are more terms available
             if ($glossary_terms->max_num_pages > 1) {
-                echo '<p>There are more terms available. Please use the search feature to find a specific word or term.</p>';
+                echo '<p class="pagination-message">More terms are available. Please use the search feature to find a specific word or term, or browse through the pages below.</p>';
             }
         } else {
-            echo '<p>No terms found.</p>';
+            echo '<p class="pagination-message no-results">No terms found.</p>';
         }
 
         wp_reset_postdata();
@@ -82,6 +90,9 @@ function glossary_archive_shortcode() {
         // Remove custom filters after use
         remove_filter('posts_where', 'glossary_search_filter', 10, 2);
         remove_filter('posts_where', 'glossary_letter_filter', 10, 2);
+
+        // Close wrapper div
+        echo '</div>';
 
         return ob_get_clean();
     } catch (Exception $e) {
