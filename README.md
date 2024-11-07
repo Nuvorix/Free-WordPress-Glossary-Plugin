@@ -26,7 +26,7 @@ Works well on both desktop and mobile devices, ensuring accessibility for all us
 
 ---
 
-### Security Features
+## Security Features
 
 ### Input Sanitization
 All user inputs, including search queries and glossary entries, are sanitized to prevent malicious code injection. This process removes any potentially harmful characters or scripts from user-submitted data before it is processed or stored. By sanitizing inputs, the plugin prevents the execution of unintended code, which could otherwise compromise site security.
@@ -38,7 +38,7 @@ The plugin enforces strict data validation, ensuring that only valid and expecte
 Nonce verification is implemented on all form submissions to protect against Cross-Site Request Forgery (CSRF) attacks. This process ensures that each request is legitimate and originates from an authorized user. Nonces (one-time tokens) are checked for each form submission, verifying that the request is intentional and preventing unauthorized commands from being executed on the server.
 
 ### XSS Protection
-To safeguard against Cross-Site Scripting (XSS) attacks, all outputted data – including tooltip text and glossary data – is properly escaped before being displayed in the browser. Escaping data means converting special characters to their HTML entity equivalents, ensuring that any code within glossary entries is treated as plain text rather than executable code, thus preventing unauthorized scripts from running in users’ browsers.
+To safeguard against Cross-Site Scripting (XSS) attacks, all output data – including tooltip text and glossary data – is properly escaped before being displayed in the browser. Escaping data means converting special characters to their HTML entity equivalents, ensuring that any code within glossary entries is treated as plain text rather than executable code, thus preventing unauthorized scripts from running in users’ browsers.
 
 ### Glossary Management
 The plugin uses role-based access control to limit glossary management capabilities to users with the Administrator or Editor roles. Only these authorized roles can create, edit, or delete glossary terms, which ensures that sensitive glossary data cannot be modified by unauthorized users or site visitors. This access control mechanism adds an extra layer of security to the plugin's functionality.
@@ -48,7 +48,14 @@ Glossary terms are cached securely using WordPress’s built-in caching mechanis
    - **Technical Event Logging**: The plugin logs only technical events related to cache generation and clearing. User interactions and personal data are not logged.
    - **Log Limitations**: The cache log is limited to a maximum of 1000 entries. Older entries are automatically removed when this limit is exceeded, ensuring that logs remain manageable and do not impact performance.
 
+### Secure Glossary Archive Page
+The glossary archive page is built with WordPress’s native query functions, such as `WP_Query`, which provide a secure and optimized way to retrieve and display data from the database. This approach ensures that:
+   - **Data Handling**: Glossary terms are fetched and displayed using WordPress’s built-in functions, which automatically handle data escaping and validation, reducing the risk of vulnerabilities.
+   - **Pagination Security**: The archive page uses WordPress’s pagination controls, which sanitize page numbers and other parameters to prevent injection attacks.
+   - **Consistent Security Practices**: By relying on WordPress’s core functions, the plugin aligns with established WordPress security standards, ensuring compatibility and security across different environments.
+
 By combining these security measures, the plugin is designed to be robust, secure, and reliable, protecting both site administrators and users from common security threats.
+
 
 ---
 
