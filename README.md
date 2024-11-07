@@ -29,7 +29,7 @@ Works well on both desktop and mobile devices, ensuring accessibility for all us
 ## Security Features
 
 ### Input Sanitization
-All user inputs, such as search queries and glossary entries, are sanitized to prevent code injection.
+All user inputs, including search queries and glossary entries, are sanitized to prevent code injection.
 
 ### Data Validation
 Only valid data is stored for tooltip text and glossary terms, ensuring database integrity.
@@ -42,6 +42,9 @@ Tooltip text and glossary data are escaped before being displayed in the browser
 
 ### Glossary Management
 Administrators and Editors can securely create, edit, or delete glossary terms.
+
+### Secure Caching and Logging
+Cache data is securely stored without sensitive information. Logging is limited to technical events like cache generation, with a maximum of 1000 log entries retained.
 
 ---
 
