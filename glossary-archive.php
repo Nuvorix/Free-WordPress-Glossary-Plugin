@@ -2,7 +2,7 @@
 /*
 Plugin Name: Glossary Archive Page
 Description: A custom archive page for glossary terms with search functionality and alphabetical filtering, optimized for performance and security.
-Version: 1.0 (Stable Release)
+Version: 1.0.6 (Stable Release)
 Requires at least: 5.0
 Tested up to: 6.6.2
 Author: ChatGPT & Nuvorix.com
@@ -20,7 +20,9 @@ function glossary_archive_shortcode() {
         $alphabet = array_merge(array('All'), range('A', 'Z'));
         $current_letter = isset($_GET['letter']) ? strtoupper(sanitize_text_field($_GET['letter'])) : '';
         $search_query = isset($_GET['glossary_search']) ? sanitize_text_field($_GET['glossary_search']) : '';
-        $paged = max(1, absint(get_query_var('paged', 1)));
+
+        // If we have a search or letter filter active, reset paged value to 1
+        $paged = (!empty($search_query) || !empty($current_letter)) ? 1 : max(1, get_query_var('paged'));
 
         // Display the alphabet filter
         echo '<div class="glossary-alphabet">';
@@ -32,7 +34,7 @@ function glossary_archive_shortcode() {
         echo '</div>';
 
         // Display search form
-        echo '<form method="get" class="glossary-search-form" action="">';
+        echo '<form method="get" class="glossary-search-form" action="' . esc_url(remove_query_arg('paged')) . '">';
         echo '<input type="text" name="glossary_search" placeholder="Search for terms..." value="' . esc_attr($search_query) . '">';
         echo '<button type="submit">Search</button>';
         echo '</form>';
