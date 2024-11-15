@@ -2,7 +2,7 @@
 /*
 Plugin Name: Glossary Archive Page
 Description: A custom archive page for glossary terms with search functionality and alphabetical filtering, optimized for performance and security.
-Version: 1.0.6 (Stable Release)
+Version: 1.0.1 (Stable Release)
 Requires at least: 5.0
 Tested up to: 6.6.2
 Author: ChatGPT & Nuvorix.com
