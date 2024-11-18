@@ -1,6 +1,6 @@
 /* Tooltip Word Style */
 .glossary-term {
-    color: rgb(238, 238, 0.75); /* Original yellow color for glossary terms */
+    color: rgba(238, 238, 0, 0.75); /* Original yellow color for glossary terms */
     cursor: help;
     transition: color 0.3s ease; /* Smooth transition for color change */
 }
@@ -29,8 +29,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 70%; /* Reduced width */
-    max-width: 400px; /* Smaller maximum width */
+    width: 70%;
+    max-width: 400px;
     background-color: #000; /* Black background for the modal */
     padding: 20px;
     border-radius: 8px;
@@ -44,7 +44,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #e0e0e0; /* Off-white color for header text */
+    color: #e0e0e0;
 }
 
 .glossary-modal-header h2 {
@@ -54,45 +54,49 @@
 /* Close Button */
 .glossary-close {
     cursor: pointer;
-    color: #FF0000; /* Off-white close button */
-    font-size: 1.5em; /* Increase font size to make "X" larger */
-    padding: 0 10px; /* Add padding to make it stand out more */
-    transition: color 0.3s ease; /* Smooth transition for color change */
+    color: #ff0000; /* Red close button for better visibility */
+    font-size: 1.5em;
+    padding: 0 10px;
+    transition: color 0.3s ease;
 }
 
 .glossary-close:hover {
-    color: #888888; /* Gray color on hover */
+    color: #888888;
 }
 
 /* Modal Content */
 .glossary-modal-content {
     margin-top: 10px;
-    color: #e0e0e0; /* Off-white color for content */
-    font-size: 1em; /* Slightly smaller text */
-    line-height: 1.4; /* Reduced line height for tighter spacing */
+    color: #e0e0e0;
+    font-size: 1em;
+    line-height: 1.4;
 }
 
 /* Centered Read More Link */
 .glossary-read-more {
     margin-top: 5px;
-    text-align: center; /* Center align the Read More link */
+    text-align: center;
 }
 
 .glossary-read-more a {
-    color: rgb(238, 238, 34, 0.75); /* Yellow color for "Read more" link */
-    text-decoration: none;
-    transition: color 0.3s ease; /* Smooth transition for color change */
+    color: rgba(238, 238, 34, 0.75); /* Nuvorix Standard Color */
+    text-decoration: underline; /* Ensure it's clear it's a link */
+    font-weight: bold; /* Stand out */
+    display: inline-block; /* Prevent hiding or overlap */
+    position: relative; /* Ensure visibility */
+    opacity: 1; /* Ensure full visibility */
+    transition: color 0.3s ease, opacity 0.3s ease;
 }
 
 .glossary-read-more a:hover {
-    color: #888888; /* Gray color on hover */
+    color: #888888; /* Change to grey on hover */
+    text-decoration: none;
 }
 
 /* Styling for small "Opens New Tab" text */
 .new-tab-note {
     display: block;
-    font-size: 0.8em; /* Smaller text */
+    font-size: 0.8em;
     color: #888888; /* Dark gray color */
-    /* margin-top: 0px; */ /* Small space above the note */
-    text-align: center; /* Centered under "Read More" */
+    text-align: center;
 }
